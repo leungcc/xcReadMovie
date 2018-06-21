@@ -1,0 +1,79 @@
+/* pages/post/post-detail/post-detail.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.head-image {
+  width: 750rpx;
+  height: 460rpx;
+}
+.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  vertical-align: middle;
+}
+.author-date {
+  margin-top: 10px;
+  padding-left: 10px;
+}
+.author {
+   font-size: 30rpx;
+   margin-left: 20rpx;
+   vertical-align: middle;
+   font-weight: 700;
+}
+.const-text {
+  font-size: 24rpx;
+  margin-left: 20rpx;
+  vertical-align: middle;
+}
+.date {
+  font-size: 24rpx;
+  margin-left: 15rpx;
+  vertical-align: middle;
+  color: #999;
+}
+.title {
+  margin-left: 40rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-top: 30rpx;
+  color: #4b556c;
+}
+.circle-img Image {
+  width: 90rpx;
+  height: 90rpx;
+}
+.circle-img {
+  float: right;
+  margin-right: 40rpx;
+  vertical-align: middle;
+}
+.share-img {
+  margin-left: 30px; 
+}
+.horizon {
+  width: 660rpx;
+  height: 1px;
+  background-color: #e5e5e5;
+  vertical-align: middle;
+  position: relative;
+  top: 46rpx;
+  margin: 0 auto;
+  z-index: -99;
+}
+.detail {
+  color: #666;
+  margin: 20rpx 30rpx;
+  letter-spacing: 2px;
+  font-size: 24rpx;
+}
+.i-audio {
+  width: 102rpx;
+  height: 110rpx;
+  position: absolute;
+  left: 50%;
+  margin-left: -51rpx;
+  top: 180rpx;
+}

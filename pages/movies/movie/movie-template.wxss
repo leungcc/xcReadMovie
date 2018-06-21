@@ -1,0 +1,14 @@
+/* pages/movies/movie/movie.wxss */
+@import '../stars/stars-template.wxss';
+
+.movie-container {
+  width: 220rpx;
+  height: 330rpx;
+  /* background-color: #f1f1f1; */
+  border: 1px solid #ddd;
+}
+.movie-container image {
+  width: 100%;
+  height: 70%;
+  
+}

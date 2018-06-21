@@ -1,0 +1,7 @@
+<view class='container'>
+  <image class='headImg' src='/images/mami.jpeg'></image>
+  <text class='user-name'>Hello, xc leung</text>
+  <view class='btn-start' bindtap="goPage">
+    <text>开启小程序之旅</text>
+  </view>
+</view>

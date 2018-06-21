@@ -1,0 +1,13 @@
+/* pages/movies/stars/stars.wxss */
+.stars-tpl {
+  display: flex;
+  flex-direction: row;
+}
+.stars-tpl .stars-container {
+  margin-right: 20rpx; 
+}
+.stars-tpl .stars-container image {
+  width: 24rpx;
+  height: 24rpx;
+  padding: 0 2rpx;
+}

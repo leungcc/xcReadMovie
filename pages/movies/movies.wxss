@@ -1,0 +1,7 @@
+@import 'movie-list/movie-list-template.wxss';
+.movies {
+  background-color: #f1f1f1;
+}
+.movieList:last-of-type {
+  margin-bottom: 0;
+}
