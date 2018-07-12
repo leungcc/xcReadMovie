@@ -3,8 +3,8 @@
   <view class="movieList">
     <view>
       <view class="movieList-hd">
-        <text>正在热映</text>
-        <view class="more-wrap">
+        <text wx-if="{{data.length}}">{{data[0].title}}</text>
+        <view class="more-wrap" catchtap="onMoreTap" data-category="{{data[0].title}}">
           <text>更多</text>
           <image class="arrow-r" src="/images/icon/arrow-right.png"></image>
         </view>

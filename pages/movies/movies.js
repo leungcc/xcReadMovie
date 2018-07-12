@@ -1,7 +1,14 @@
 var app = getApp();
+var util = require("../../utils/util.js");
+
 Page({
   data: {
-    //movies: []
+    inTheaters: [],
+    comingSoon: [],
+    movieTypeMap: {
+      inTheaters: '正在热映',
+      comingSoon: '即将上映'
+    }
   },
   onLoad(event) {
     let inTheatersUrl = app.data.globalData.doubanBase + "/v2/movie/in_theaters";
@@ -13,28 +20,30 @@ Page({
     //this.getMovieListData(top250Url, "top250");
     console.log("onload")
   },
+  /************事件************ */
+  /**
+   * 点击“更多事件”
+   */
+  onMoreTap(e) {
+    var category = e.currentTarget.dataset.category;
+    wx.navigateTo({
+      url: 'more-movies/more-movies?category='+category,
+    })
+  },
+  /************事件************ */
+  /**
+   * 从服务器拉取数据
+   */
   getMovieListData(url, dataKey) {
     var self = this;
-    wx.request({
-      url: url,
-      header: {
-        "Content-Type": "application/json"
-      },
-      data: {
-        start: 0,
-        count: 3
-      },
-      method: 'GET',
-      success(res) {
-        self.processDoubanData(res.data, dataKey);
-      },
-      fail() {
-
-      },
-      complete() {
-
-      }
-    });
+    var params = {
+      start: 0,
+      count: 3
+    }
+    //请求
+    util.http(url, params, function(res){
+      self.processDoubanData(res.data, dataKey);
+    }, "GET");
   },
   /**
    * 处理服务器返回的数据
@@ -51,15 +60,22 @@ Page({
       var temp = {
         title: title,
         average: subject.rating.average,
+        stars: util.convertToStarsArr(subject.rating.average),
         coverageUrl: subject.images.large,
         movieId: subject.id
       }
+      
+      //为不同类型加上title
+      temp.title = this.data.movieTypeMap[dataKey];
+
       movies.push(temp);
 
-      var curData = {};
-      curData[dataKey] = movies;
-
-      this.setData(curData);
+      
     }
+
+    var curData = {};
+    curData[dataKey] = movies;
+    console.log(curData);
+    this.setData(curData);
   }
 })
