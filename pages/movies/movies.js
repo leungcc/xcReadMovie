@@ -1,15 +1,18 @@
 var app = getApp();
 Page({
   data: {
-    movies: []
+    movies: [],
+    data2: [],
+    data3: []
   },
   onLoad(event) {
     let inTheatersUrl = app.data.globalData.doubanBase + "/v2/movie/in_theaters";
     var comingSoonUrl = app.data.globalData.doubanBase + "/v2/movie/coming_soon";
     var top250Url = app.data.globalData.doubanBase + "/v2/movie/top250 ";
-    this.getMovieListData(comingSoonUrl);
+    this.getMovieListData(comingSoonUrl, 'movies');
+    this.getMovieListData(inTheatersUrl, 'data2');
   },
-  getMovieListData(url) {
+  getMovieListData(url, variable) {
     var self = this;
     wx.request({
       url: url,
@@ -22,7 +25,7 @@ Page({
       },
       method: 'GET',
       success(res) {
-        self.processDoubanData(res.data);
+        self.processDoubanData(res.data, variable);
       },
       fail() {
 
@@ -35,7 +38,7 @@ Page({
   /**
    * 处理服务器返回的数据
    */
-  processDoubanData(moviesDouban) {
+  processDoubanData(moviesDouban, variable) {
     var movies = [];
     console.log(moviesDouban)
     for (var idx in moviesDouban.subjects) {
@@ -51,9 +54,35 @@ Page({
         movieId: subject.id
       }
       movies.push(temp);
+      console.warn(`variable=${variable}`)
       this.setData({
-        movies: movies
+        [variable]: movies
       })
     }
+  },
+
+  /**
+   * 加载更多
+   */
+  loadMoreMovies() {
+    wx.navigateTo({
+      url: 'more-movies/more-movies'
+    })
+  },
+
+  /**
+   * 滚动到底部
+   */
+  scrollLower(a, b) {
+    console.warn(`scrollLower...and print a、b`);
+    console.log(a);
+    console.log(b);
+  },
+
+  /**
+   * 滚动到顶部
+   */
+  scrollUpper(arg1) {
+    console.warn(`scrollUpper ...`);
   }
 })

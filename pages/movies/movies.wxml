@@ -1,6 +1,7 @@
 <import src="movie-list/movie-list-template.wxml" />
-<view class="movies">
-  <template is="movieListTemplate" data="{{movies}}" />
-  <template is="movieListTemplate" data="{{...data2}}" />
-  <template is="movieListTemplate" data="{{...data3}}" />
-</view>
+<scroll-view style='height:1000rpx;' class="movies" scroll-y 
+bindscrolltolower="scrollLower" bindscrolltoupper="scrollUpper">
+  <template is="movieListTemplate" data="{{ ...{movies: movies} }}" />
+  <template is="movieListTemplate" data="{{ ...{movies: data2} }}" />
+  <template is="movieListTemplate" data="{{ ...{movies: data2} }}" /> 
+</scroll-view>

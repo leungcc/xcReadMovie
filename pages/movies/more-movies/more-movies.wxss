@@ -1,0 +1,10 @@
+
+/* pages/movies/more-movies/more-movies.wxss */
+@import '../movie/movie-template.wxss';
+.movieList-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0 10rpx;
+}
