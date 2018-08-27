@@ -1,5 +1,7 @@
+
 // pages/movies/more-movies/more-movies.js
 const app = getApp();
+
 
 Page({
 
@@ -8,6 +10,7 @@ Page({
    */
   data: {
     movies: []  //所有电影
+
   },
 
   /**
@@ -96,6 +99,7 @@ Page({
 
       }
     });
+
   },
 
   /**

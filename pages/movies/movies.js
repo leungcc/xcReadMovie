@@ -1,4 +1,6 @@
 var app = getApp();
+var util = require("../../utils/util.js");
+
 Page({
   data: {
     movies: [],
@@ -50,9 +52,14 @@ Page({
       var temp = {
         title: title,
         average: subject.rating.average,
+        stars: util.convertToStarsArr(subject.rating.average),
         coverageUrl: subject.images.large,
         movieId: subject.id
       }
+      
+      //为不同类型加上title
+      //temp.title = this.data.movieTypeMap[dataKey];
+
       movies.push(temp);
       console.warn(`variable=${variable}`)
       this.setData({

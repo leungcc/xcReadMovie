@@ -1,12 +1,16 @@
 <template name="starsTemplate">
   <view class="stars-tpl">
     <view class="stars-container">
-      <image src="/images/icon/star.png"></image>
-      <image src="/images/icon/star.png"></image>
-      <image src="/images/icon/star.png"></image>
-      <image src="/images/icon/star.png"></image>
-      <image src="/images/icon/star.png"></image>
+      <!-- 将评分数组渲染成对应的星星 -->
+      <block wx:for="{{stars}}" wx:for-item="item" wx:key="{{item}}">
+        <image src="/images/icon/star.png" wx:if="{{item===1}}"></image>
+        <image src="/images/icon/star-2per3.png" wx:elif="{{item>0.5 && item<1}}"></image>
+        <image src="/images/icon/star-half.png" wx:elif="{{item===0.5}}"></image>
+        <image src="/images/icon/star-1per3.png" wx:elif="{{item<0.5 && item>0}}"></image>
+        <image src="/images/icon/none-star.png" wx:elif="{{item===0}}"></image>
+      </block>
     </view>
     <text>{{average}}</text>
+    
   </view>
 </template>
