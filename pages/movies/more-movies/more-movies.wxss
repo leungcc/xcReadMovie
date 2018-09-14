@@ -10,3 +10,7 @@
   flex-wrap: wrap;
 
 }
+
+.movie-container {
+  margin: 10rpx 0;
+}

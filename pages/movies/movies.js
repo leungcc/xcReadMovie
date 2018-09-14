@@ -71,9 +71,11 @@ Page({
   /**
    * 加载更多
    */
-  loadMoreMovies() {
+  loadMoreMovies(e) {
+    console.log('print e');
+    console.log(e);
     wx.navigateTo({
-      url: 'more-movies/more-movies'
+      url: 'more-movies/more-movies?title='+e.target.dataset.title
     })
   },
 

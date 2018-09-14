@@ -3,9 +3,9 @@
   <view class="movieList">
     <view>
       <view class="movieList-hd">
-        <text>正在热映</text>
+        <text>{{title}}</text>
         <view class="more-wrap">
-          <text bindtap="loadMoreMovies">更多</text>
+          <text bindtap="loadMoreMovies" data-title="{{title}}">更多</text>
           <image class="arrow-r" src="/images/icon/arrow-right.png"></image>
         </view>
       </view>

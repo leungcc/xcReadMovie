@@ -42,7 +42,7 @@
   font-size: 30rpx;
   text-align: left;
   letter-spacing: 1px;
-  text-indent: 10rpx;
+  padding: 10rpx;
 }
 .news-container .news-like {
   width: 100%;
@@ -50,6 +50,7 @@
   line-height: 50rpx;
 }
 .news-container .news-content {
+  padding: 10rpx;
   font-size: 22rpx;
   letter-spacing: 2rpx;
   color: #666;

@@ -1,7 +1,7 @@
 <import src="movie-list/movie-list-template.wxml" />
-<scroll-view style='height:1000rpx;' class="movies" scroll-y 
+<scroll-view style='height:1160rpx;' class="movies" scroll-y="true" 
 bindscrolltolower="scrollLower" bindscrolltoupper="scrollUpper">
-  <template is="movieListTemplate" data="{{ ...{movies: movies} }}" />
-  <template is="movieListTemplate" data="{{ ...{movies: data2} }}" />
-  <template is="movieListTemplate" data="{{ ...{movies: data2} }}" /> 
+  <template is="movieListTemplate" data="{{ ...{movies: movies, title: '正在热映'} }}" />
+  <template is="movieListTemplate" data="{{ ...{movies: data2, title: 'top250'} }}" />
+  <template is="movieListTemplate" data="{{ ...{movies: data2, title: '即将上映'} }}" /> 
 </scroll-view>
