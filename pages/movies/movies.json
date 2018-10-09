@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "光与影"
+  "navigationBarTitleText": "电影导视",
+  "usingComponents": {
+    "movie-list": "/components/movie/movie-list/movie-list"
+  }
 }

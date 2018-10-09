@@ -1,3 +1,6 @@
 {
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "movie-list": "/components/movie/movie-list/movie-list"
+  }
 }

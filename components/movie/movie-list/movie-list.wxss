@@ -1,0 +1,14 @@
+/* components/movie/movie-list/movie-list.wxss */
+@import '/pages/movies/movie/movie-template.wxss';
+.movie-list-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: flex-start;
+  flex-wrap:wrap;
+
+}
+
+.movie-container {
+  margin: 10rpx 0;
+}

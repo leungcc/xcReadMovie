@@ -1,7 +1,22 @@
 <import src="movie-list/movie-list-template.wxml" />
-<scroll-view style='height:1160rpx;' class="movies" scroll-y="true" 
-bindscrolltolower="scrollLower" bindscrolltoupper="scrollUpper">
-  <template is="movieListTemplate" data="{{ ...{movies: movies, title: '正在热映'} }}" />
-  <template is="movieListTemplate" data="{{ ...{movies: data2, title: 'top250'} }}" />
-  <template is="movieListTemplate" data="{{ ...{movies: data2, title: '即将上映'} }}" /> 
-</scroll-view>
+<view class="movies">
+  <view class='search-panel'>
+    <icon type="search" size="16" color="#666"></icon>
+    <input placeholder="夏目友人帐、你的名字" bindblur="onSearchInputBlur" bindfocus="onSearchInputFocus" placeholder-class="placeholder" value="{{searchInputVal}}"></input>
+    <text class="iconfont icon-31guanbi" style="font-size:16px;color:#999;" hidden="{{!isSearchMode}}" bindtap="onSearchCloseTap"></text>
+  </view>
+  <!--默认展示的电影-->
+  <view class="default-movies-wrap" hidden="{{isSearchMode}}">
+    <template is="movieListTemplate" data="{{ ...{movies: movies__inTheaters, moviesFlex: movies__inTheaters__flex, title: '正在热映'} }}" />
+    <template is="movieListTemplate" data="{{ ...{movies: movies__top250, moviesFlex: movies__top250__flex, title: 'top250'} }}" />
+    <template is="movieListTemplate" data="{{ ...{movies: movies__comingSoon, moviesFlex: movies__comingSoon__flex, title: '即将上映'} }}" /> 
+  </view>
+  <!--搜索出来的电影-->
+  <view class="search-movies-wrap" hidden="{{!isSearchMode}}">
+    <movie-list
+      movies="{{movies__search}}"
+      movies-flex="{{movies__search__flex}}"
+      style="width:100%;padding:10rpx;"
+    ></movie-list>
+  </view>
+</view>

@@ -1,12 +1,18 @@
 <import src="../movie/movie-template.wxml" />
 
-<scroll-view class='movieList-container' style='height:1160rpx;padding:0;' scroll-y 
-bindscrolltolower="scrollLower">
-  <view class='movieList-container' style='height:100%;padding:0;'>
+<!-- <scroll-view class='movieList-container' style='height:1160rpx;padding:0;' scroll-y 
+bindscrolltolower="scrollLower"> -->
+<view class='movieList-container'>
+  <!-- <view class='movieList-container' style='height:100%;padding:0;'>
     <block wx:for="{{movies}}" wx:for-item="movie" wx:key="{{movie.id}}">
       <template is="movieTemplate" data="{{...movie}}" />
     </block>
-  </view>
-</scroll-view>
+  </view> -->
+  <movie-list
+    movies="{{movies}}"
+    movies-flex="{{movies__flex}}"
+    style="width:100%;padding:10rpx;"
+  ></movie-list>
+</view>
 
 

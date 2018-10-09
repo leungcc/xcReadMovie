@@ -195,13 +195,17 @@ Page({
     const postid = this.data.postid;
     if(this.data.isPlayingMusic) {
       wx.pauseBackgroundAudio();
-      
+    
+
     } else {
-      wx.playBackgroundAudio({
+      
+      let params = {
         dataUrl: postData[postid].music.url,
         title: postData[postid].music.title,
         coverImgUrl: postData[postid].music.coverImg
-      })
+      };
+
+      wx.playBackgroundAudio(params);
       
     }
   }

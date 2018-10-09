@@ -43,6 +43,7 @@
   text-align: left;
   letter-spacing: 1px;
   padding: 10rpx;
+  text-indent: 10rpx;
 }
 .news-container .news-like {
   width: 100%;

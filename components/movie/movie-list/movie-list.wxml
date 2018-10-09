@@ -1,0 +1,9 @@
+<import src="/pages/movies/movie/movie-template.wxml" />
+<view class="movie-list-wrap">
+  <block wx:for="{{__movies}}" wx:for-item="movie" wx:key="{{movie.id}}">
+    <template is="movieTemplate" data="{{...movie}}" />
+  </block>
+  <block wx:for="{{__moviesFlex}}" wx:for-item="movie" wx:key="{{index}}">
+    <template is="movieTemplate" data="{{...movie}}"/>
+  </block>
+</view>

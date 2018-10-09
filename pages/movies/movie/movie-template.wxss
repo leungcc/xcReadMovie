@@ -1,5 +1,6 @@
 /* pages/movies/movie/movie.wxss */
 @import '../stars/stars-template.wxss';
+@import '/base/css/base.wxss';
 
 .movie-container {
   width: 220rpx;

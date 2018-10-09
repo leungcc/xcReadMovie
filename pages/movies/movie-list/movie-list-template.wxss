@@ -8,7 +8,8 @@
 }
 
 .movieList {
-  padding: 40rpx 0;
+  /*padding: 40rpx 0;*/
+  padding: 10rpx 0 20rpx 0;
   background-color: #fff;
   margin-bottom: 40rpx;
 }

@@ -1,4 +1,7 @@
 // pages/movies/more-movies/more-movies.js
+/**
+ * 注意：onPullDownRefresh 和 scroll-view 不能共存
+ */
 
 var util = require('../../../utils/util.js');
 const app = getApp();
@@ -11,11 +14,19 @@ Page({
    */
   data: {
     movies: [],  //所有电影
+    movies__flex: [],
     title: '',
 
     inTheatersUrl: '',
     comingSoonUrl: '',
-    top250Url: ''
+    top250Url: '',  
+    
+    //======== 中文Title-请求Url 映射
+    titleUrlMap: {
+      '正在热映': 'inTheatersUrl',
+      'top250': 'top250Url',
+      '即将上映': 'comingSoonUrl'
+    }
 
   },
 
@@ -30,12 +41,13 @@ Page({
     self.setData({title: options.title || '更多电影'});
 
     //赋值几个 url
-    self.inTheatersUrl = app.data.globalData.doubanBase + "/v2/movie/in_theaters";
-    self.comingSoonUrl = app.data.globalData.doubanBase + "/v2/movie/coming_soon";
-    self.top250Url = app.data.globalData.doubanBase + "/v2/movie/top250";
+    self.data.inTheatersUrl = app.data.globalData.doubanBase + "/v2/movie/in_theaters";
+    self.data.comingSoonUrl = app.data.globalData.doubanBase + "/v2/movie/coming_soon";
+    self.data.top250Url = app.data.globalData.doubanBase + "/v2/movie/top250";
 
+    console.log(self.data.titleUrlMap);
     //self.getMovieListData(self.inTheatersUrl, 'movies');
-    util.http.get(self.inTheatersUrl, {start: 0, count: 30}, {
+    util.http.get(self.data[self.data.titleUrlMap[self.data.title]], {start: 0, count: 30}, {
       beforeSend: function() {
         wx.showNavigationBarLoading();
       }
@@ -57,7 +69,7 @@ Page({
     const self = this;
     wx.setNavigationBarTitle({
       title: self.data.title,
-    })
+    });
   },
 
   /**
@@ -85,14 +97,15 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    console.log('======== onPullDownRefresh');
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    console.log('-------- onReachBottom');
+    this.scrollLower();
   },
 
   /**
@@ -101,36 +114,6 @@ Page({
   onShareAppMessage: function () {
   
   },
-
-  /**
-   * 获取电影数据
-   * @param {String} url 电影数据地址
-   * @param {String} variable 将拿到的数据缓存到该变量
-   */
-  // getMovieListData(url, variable) {
-  //   var self = this;
-  //   wx.request({
-  //     url: url,
-  //     header: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     data: {
-  //       start: 0,
-  //       count: 30
-  //     },
-  //     method: 'GET',
-  //     success(res) {
-  //       self.processDoubanData(res.data, variable);
-  //     },
-  //     fail() {
-
-  //     },
-  //     complete() {
-
-  //     }
-  //   });
-
-  // },
 
   /**
    * 处理服务器返回的数据
@@ -146,6 +129,7 @@ Page({
       var temp = {
         title: title,
         average: subject.rating.average,
+        stars: util.convertToStarsArr(subject.rating.average),
         coverageUrl: subject.images.large,
         movieId: subject.id
       }
@@ -154,10 +138,11 @@ Page({
       
     }
 
-    movies = movies.concat(this.data[variable]);
+    movies = [].concat(this.data[variable], movies);
 
     this.setData({
-      [variable]: movies//.concat(this.data[variable])
+      [variable]: movies,//.concat(this.data[variable])
+      [variable+'__flex']: new Array((3-movies.length%3)%3).fill({})
     })
   },
 
@@ -166,26 +151,11 @@ Page({
    */
   scrollLower(arg1, arg2) {
     console.warn('滚动到底');
-    var self = this;
-    var startPage = 0;
-    var url = '';
+    const self = this;
+    let url = self.data[self.data.titleUrlMap[self.data.title]];
 
-    startPage = parseInt(this.data.movies.length/30);
-    console.warn(`startPage:${startPage}`);
-
-    switch(self.data.title) {
-      case '正在热映':
-        url = self.inTheatersUrl
-        break;
-      case '即将上映':
-        url = self.comingSoonUrl
-        break;
-      case 'top250':
-        url = self.top250Url
-        break;
-    }
-    //this.getMovieListData(url, 'movies');
-    util.http.get(self.inTheatersUrl, { start: 0, count: 30 }, {
+    //请求
+    util.http.get(url, { start: self.data.movies.length, count: 30 }, {
       beforeSend: function () {
         wx.showNavigationBarLoading();
       }

@@ -1,0 +1,12 @@
+@import './stylesheet.wxss';
+@import './iconfont.wxss';
+
+.hahaclass {color: red;}
+.vh{visibility: hidden;}
+.c-danger {color: red;}
+.hr{
+  width: 100%;
+  height: 1px;
+  background-color: #eee;
+}
+

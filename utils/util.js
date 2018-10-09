@@ -10,6 +10,8 @@
   }
 })();
 
+console.log('======util.js run..=======');
+
 var http = {
   get: function(url, params, custom) {
     return http2(url, 'GET', params, custom);
@@ -76,7 +78,7 @@ function http2(url, method, param, custom) {
     wx.request({
       url: url,
       header: {
-        "Content-Type": "application/json"
+        "Content-Type": "json"  //application/json会报错http 400
       },
       data: param || {},
       method: method || 'GET',
@@ -90,8 +92,78 @@ function http2(url, method, param, custom) {
   })
 }
 
+/**
+ * @desc 设置监听器
+ * @param {Object} data Page构造器的data对象
+ * @param {Object} watch Page构造器的watch对象
+ */
+function setWatcher(data, watch, self) {
+  console.warn('.. enter setWatcher, print data and watch')
+  console.log(data)
+  console.log(watch)
+  Object.keys(watch).forEach(key => {
+    __observe(data, key, watch[key], self);
+  })
+}
+
+/**
+ * @desc 监听属性变化进而执行监听函数
+ */
+function __observe(obj, key, watchFn, self) {
+  var val = obj[key];
+  Object.defineProperty(obj, key, {
+    configurable: true,
+    enumerable: true,
+    get: function() {
+      return val;
+    },
+    set: function(newVal) {
+      val = newVal;
+      watchFn.call(self, val);
+    }
+  })
+}
+
+
+
+
+
+
+function defineReactive(data, key, val, fn) {
+  let subs = data['$'+key] || [];
+  Object.defineProperty(data, key, {
+    configurable: true,
+    enumerable: true,
+    get: function() {
+      if(data.$target) {
+        subs.push(data.$target);
+        data['$'+key] = subs;
+      }
+      return val;
+    },
+    set: function(newVal) {
+      if(newVal === val) {
+        return;
+      }
+      fn && fn(newVal);
+      if(subs.length) {
+        setTimeout(() => {
+          subs.forEach(sub => sub())
+        }, 0);
+      }
+      val = newVal;
+    }
+  })
+}
+
+
+
+
+
+
 module.exports = {
   convertToStarsArr: convertToStarsArr,
   http1: http1,
-  http: http
+  http: http,
+  setWatcher: setWatcher
 }

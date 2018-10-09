@@ -1,0 +1,76 @@
+<import src="../movie/movie-template.wxml" />
+<import src="../stars/stars-template.wxml" />
+
+<view class="p-movie-detail">
+  <view wx:if="{{!movieDetailRender.title}}" class="noData-msg">暂无数据</view>
+  <view wx:else class="movie-detail-wrap">
+    <!--1.顶部块-->
+    <view class="movie-top-wrap">
+      <view class="movie-top-bg-wrap">
+        <image class="movie-top-bg" src="{{movieDetailRender.img}}" mode="aspectFill"></image>
+      </view>
+      <view class="top-font-wrap">
+        <view class="font-wrap font-title-wrap">
+          <text class="font-title">{{movieDetailRender.title}}</text>
+        </view>
+        <view class="font-wrap font-areaTime-wrap">
+          <text class="font-areaTime">{{movieDetailRender.areaTime}}</text>
+        </view>
+        <view class="font-commentNum">
+          <text class="c-danger">{{movieDetailRender.commentNum}}</text>
+          <text> 条评论</text>
+        </view>
+      </view>
+      <view class="movie-img-wrap">
+        <image src="{{movieDetailRender.img}}" bindtap="onViewFullImg"></image>
+      </view>
+    </view>
+    <!--中间块-->
+    <view class="movie-mid-wrap">
+      <view class="alt-title-wrap">
+        <text>{{movieDetailRender.mainTitle}}</text>
+      </view>
+      <view class="line-wrap">
+        <view class="label">
+          <text>评分</text>
+        </view>
+        <template is="starsTemplate" data="{{ ...{average: movieDetailRender.average, stars: movieDetailRender.stars} }}" /> 
+      </view>
+      <view class="line-wrap">
+        <view class="label">
+          <text class="label">导演</text>
+        </view>
+        <text>{{movieDetailRender.director}}</text>
+      </view>
+      <view class="line-wrap">
+        <view class="label">
+          <text>影人</text>
+        </view>
+        <view>
+          <text>{{movieDetailRender.performers}}</text>
+        </view>
+      </view>
+      <view class="line-wrap">
+        <view class="label">
+          <text>类型</text>
+        </view>
+        <text>{{movieDetailRender.movieType}}</text>
+      </view>
+    </view>
+    <view class="hr"></view>
+    <!--剧情块-->
+    <view class="movie-drama-wrap">
+      <view class="movie-drama-title">
+        <text>剧情简介</text>
+      </view>
+      <view class="movie-drama-info">
+        <text>{{movieDetailRender.drama}}</text>
+      </view>
+    </view>
+    <view class="hr"></view>
+    <!--影人块-->
+    <view class="movie-casts-wrap">
+    
+    </view>
+  </view>
+</view> 

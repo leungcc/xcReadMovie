@@ -1,0 +1,86 @@
+/* pages/movies/movie-detail/movie-detail.wxss */
+@import '../../../base/css/base.wxss';
+@import '../movie/movie-template.wxss';
+@import '../stars/stars-template.wxss';
+
+.movie-top-wrap {
+  width: 100%;
+  height: 300rpx;
+  /* overflow: hidden; */
+  position: relative;
+}
+.movie-top-wrap .movie-top-bg-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.movie-top-wrap .movie-top-bg-wrap .movie-top-bg {
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+  
+}
+.movie-top-wrap .top-font-wrap {
+  position: absolute;
+  top: 0;
+  left: 40rpx;
+  right: 40rpx;
+  bottom: 0;
+  color: #fff;
+}
+.movie-top-wrap .movie-img-wrap {
+  position: absolute;
+  bottom: -70rpx;
+  right: 40rpx;
+  width: 150rpx;
+  height: 200rpx;
+
+}
+.movie-top-wrap .movie-img-wrap image {
+  width: 100%;
+  height: 100%;
+}
+
+.top-font-wrap .font-title-wrap {
+  margin-top: 20rpx;
+  padding: 20rpx 0;
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 4rpx;
+}
+ .top-font-wrap .font-areaTime-wrap {
+   padding: 10rpx 0;
+   font-size: 12px;
+   margin-bottom: 60rpx;
+ }
+
+
+.movie-mid-wrap {
+  height: 320rpx;
+  width: 100%;
+  padding: 40rpx;
+}
+.movie-mid-wrap .alt-title-wrap {
+  margin-bottom: 30rpx;
+  font-weight: bold;
+}
+.movie-mid-wrap .line-wrap {
+  display: flex;
+  padding: 10rpx;
+}
+.movie-mid-wrap .line-wrap .label {
+  color: #999;
+  min-width:100rpx;
+}
+
+
+.movie-drama-wrap {
+  padding: 40rpx;
+}
+.movie-drama-wrap .movie-drama-title {
+  margin-bottom: 20rpx;
+}
+.movie-drama-wrap .movie-drama-info {
+  line-height: 40rpx;
+  letter-spacing: 2rpx;
+}
